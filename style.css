@@ -1,0 +1,161 @@
+body {
+    margin: 0em;
+    background-color: #C0C0C0;
+}
+div {
+    display: block;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 0.895fr;
+    grid-template-rows: .28fr 1fr;
+    grid-template-areas:
+        'display display display display'
+        'numbers numbers numbers operators';
+    height: 720px;
+    width: 400px;
+    font-family: Arial, Sans-serif;
+    border-radius: 10px;
+    border: .5px solid #202124;
+    margin: auto;
+    margin-top: 4em;
+    background: #202124;
+    box-shadow: 1px 10px 20px 1px black;
+}
+
+
+.display {
+    grid-area: display;
+    display: grid;
+    grid-template-rows: .38fr .117fr .147fr .117fr .176fr;
+    grid-template-columns: auto;
+    grid-template-areas:
+        '.'
+        'calc'
+        'display1'
+        'result'
+        '.';
+    background: #2D3033;
+    box-shadow: 0 8px 6px -6px black;
+    border-radius: 10px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+.calc {
+    grid-area: calc;
+    margin-left: 1.54em;
+    margin-bottom: 1em;
+    
+}
+.greyText {
+    color: #9AA0A6;
+}
+.display1 {
+    grid-area: display1;
+    text-align: right;
+    font-size: 1.5em;
+    margin-right: .8em;
+    margin-left: 1em;
+}
+.whiteText {
+    color: white;
+}
+.result {
+    grid-area: result;
+    text-align: right;
+    margin-top: 1.3em;
+    margin-right: 1em;
+    margin-left: 1em;
+
+}
+.numbers {
+    grid-area: numbers;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
+    border-bottom-left-radius: 10px;
+}
+button {
+    background: #202124;
+    height: 100%;
+    width: 100%;
+    font-weight: bold;
+    font-size: 2em;
+    transition: all .07s ease;
+    border: none;
+    
+}
+.operators {
+    grid-area: 'operators';
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    border-bottom-right-radius: 10px;
+}
+.blueText {
+    color: #8AB4F8;
+}
+.footer {
+    color: black;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-align: center;
+    padding: 2em;
+    padding-bottom: 0px;
+    margin-bottom: 1px;
+
+}
+img {
+    height:10% ;
+    width: 10%;
+   
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+footer {
+    padding-bottom: 0px;
+}
+.footer2 {
+    color: black;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-align: center;
+    padding-top: 0px
+    
+}
+#addition {
+    border-radius: 10px;
+}
+#zero {
+    border-radius: 10px;
+}
+#division {
+    border-radius: 10px;
+}
+#multiplication {
+    border-radius: 10px;
+}
+#subtraction {
+    border-radius: 10px;
+}
+button:active
+{
+	box-shadow: 0 0 .3em #8AB4F8 inset;
+}
+button:focus
+{
+	outline: none;
+	border: none;
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}

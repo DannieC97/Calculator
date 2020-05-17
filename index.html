@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="grid-container">
+        <div class="display">
+            <div class="calc greyText">
+                <p></p>
+            </div>
+            <div class="display1 whiteText" id="input">         0</div>
+            <div class="result greyText" id="result">            </div>
+            
+
+        </div>
+        <div class="numbers">
+			<div class="buttons"><button class="whiteText btn" id="seven">7</button></div>
+			<div class="buttons"><button class="whiteText btn" id="eight">8</button></div>
+			<div class="buttons"><button class="whiteText btn" id="nine">9</button></div>
+			<div class="buttons"><button class="whiteText btn" id="four">4</button></div>
+			<div class="buttons"><button class="whiteText btn" id="five">5</button></div>
+			<div class="buttons"><button class="whiteText btn" id="six">6</button></div>
+			<div class="buttons"><button class="whiteText btn" id="one">1</button></div>
+			<div class="buttons"><button class="whiteText btn" id="two">2</button></div>
+			<div class="buttons"><button class="whiteText btn" id="three">3</button></div>
+			<div class="buttons"><button class="whiteText btn" id="zero">0</button></div>
+			<div class="buttons"><button class="whiteText btn" id="decimal">.</button></div>
+			<div class="buttons"><button class="whiteText btn" id="equal">=</button></div>
+        </div>
+        <div class="operators">
+			<div><button class="blueText" id="clear">AC</button></div>
+			<div><button class="blueText" id="backspace">DEL</button></div>
+			<div><button class="blueText" id="division">÷</button></div>
+			<div><button class="blueText" id="multiplication">×</button></div>
+			<div><button class="blueText" id="subtraction">-</button></div>
+			<div><button class="blueText" id="addition">+</button></div>
+		</div>
+
+
+    </div>
+
+    
+</body>
+<footer>
+    <p class="footer">Created by <a href="https://github.com/DannieC97" target="#">Daniel Chabi</a> </p>
+    
+</footer>
+</html>
+<script>
+    let firstNum = '';
+    let secondNum = '';
+    let operation = '';
+    let answer = 0;
+    let flag = true;
+    let decFlag = true;
+    let tr;
+    
+    
+
+function add(a,b) {
+    return a + b;
+}
+function subtract(a, b) {
+  return a - b;
+}
+function multiply(a, b) {
+  return a * b;
+}
+function divide(a, b) {
+  return a / b;
+}
+
+let btnClick=(input)=>{
+    if(!decFlag && input == '.') {
+        return;
+    }
+    if(input == '.') {
+        decFlag = false;
+    }
+
+    if(flag) {
+    if(firstNum == '0') {
+        firstNum = '';
+    }
+    firstNum += input;
+    display1.innerHTML = firstNum;
+}
+if(!flag) {
+    secondNum += input;
+    display1.innerHTML = tr + secondNum;
+
+}   
+    
+};
+function Clear() {
+    firstNum = '0';
+    secondNum = '';
+    display1.innerHTML = firstNum;
+    flag = true;  
+    decFlag = true;
+    answer = 0;
+}
+let opClick=(input)=>{
+    if(!flag) {
+        operate(firstNum,secondNum);
+    }
+    flag = false;
+     if(input == '+' ) {
+        operation = '+';
+        display1.innerHTML = firstNum + "+" ;
+        tr =display1.innerHTML 
+    }
+    if(input == '-' ) {
+        operation = '-';
+        display1.innerHTML = firstNum + "-" ;
+        tr =display1.innerHTML 
+    }
+    if(input == '÷' ) {
+        operation = '÷';
+        display1.innerHTML = firstNum + "÷" ;
+        tr =display1.innerHTML 
+    }
+    if(input == '×' ) {
+        operation = '×';
+        display1.innerHTML = firstNum + "×" ;
+        tr =display1.innerHTML 
+    }
+    
+};
+
+ function operate() {
+    
+     firstNum = Number(firstNum);
+     secondNum = Number(secondNum);
+     if(operation == '') {
+         answer = firstNum;
+     }
+     
+     if(operation == '+') {
+         answer = add(firstNum,secondNum);
+
+     }
+     if(operation == '-') {
+        answer = subtract(firstNum,secondNum);
+     }
+     if(operation == '÷') {
+        answer = divide(firstNum,secondNum);
+     }
+     if(operation == '×') {
+        answer = multiply(firstNum,secondNum);
+     }
+     decFlag = true;
+     operation = '';
+     firstNum = answer;
+     answer = answer.toFixed(2).replace(/\.00$/, '');
+     secondNum = ''
+     display1.innerHTML = answer
+     
+ }
+ function backSpace() {
+     if(secondNum == '' && flag == true && firstNum.slice(-1) == '.') {
+         decFlag = true;
+     }
+     if(secondNum != '' && !flag && secondNum.slice(-1) == '.') {
+        decFlag = true;
+     }
+    
+    
+    if(secondNum == '' && flag == true) {
+        firstNum = firstNum.substring(0, firstNum.length - 1);
+        if(firstNum == '') {
+            firstNum = '0';
+        }
+        display1.innerHTML = firstNum;
+     }
+     if(!flag && secondNum == ''){
+        
+         operation = '';
+         flag = true;
+         display1.innerHTML = firstNum;
+         
+     } 
+     if(secondNum != '' && !flag) {
+         secondNum = secondNum.substring(0, secondNum.length - 1);
+         display1.innerHTML = tr + secondNum;
+     }
+ }
+
+// selectors
+let display1 = document.getElementById("input");
+let btn1 = document.getElementById("one");
+let btn2 = document.getElementById("two");
+let btn3 = document.getElementById("three");
+let btn4 = document.getElementById("four");
+let btn5 = document.getElementById("five");
+let btn6 = document.getElementById("six");
+let btn7 = document.getElementById("seven");
+let btn8 = document.getElementById("eight");
+let btn9 = document.getElementById("nine");
+let btn0 = document.getElementById("zero");
+let btnClear = document.getElementById("clear");
+let btnDecimal = document.getElementById("decimal");
+let btnDivision = document.getElementById("division");
+let btnMultiplication = document.getElementById("multiplication");
+let btnSubtraction = document.getElementById("subtraction");
+let btnAddition = document.getElementById("addition");
+let btnEqual = document.getElementById("equal");
+btnBackspace = document.getElementById("backspace");
+
+//clickers
+btn1.onclick =()=>{ btnClick('1'); }      
+btn2.onclick =()=>{ btnClick('2'); }
+btn3.onclick =()=>{ btnClick('3'); }
+btn4.onclick =()=>{ btnClick('4'); }
+btn5.onclick =()=>{ btnClick('5'); }
+btn6.onclick =()=>{ btnClick('6'); }
+btn7.onclick =()=>{ btnClick('7'); }
+btn8.onclick =()=>{ btnClick('8'); }
+btn9.onclick =()=>{ btnClick('9'); }
+btn0.onclick =()=>{ btnClick('0'); }
+btnDecimal.onclick =()=>{ btnClick('.'); }
+btnClear.onclick =()=>{ Clear(); }
+btnBackspace.onclick =()=>{ backSpace();}
+
+btnDivision.onclick =()=>{ opClick('÷');  }
+btnMultiplication.onclick =()=>{ opClick('×');  }
+btnSubtraction.onclick =()=>{ opClick('-');  }
+btnAddition.onclick =()=>{ opClick('+');  }
+
+btnEqual.onclick = () => { operate(); }
+
+
+document.onkeyup = function(e) {
+  if (e.which == 48 || e.which == 96) {
+   btn0.click();
+  }else if(e.which == 49 || e.which == 97){
+  	btn1.click();
+  }else if(e.which == 50 || e.which == 98){
+  	btn2.click();
+  }else if(e.which == 51 || e.which == 99){
+  	btn3.click();
+  }else if(e.which == 52 || e.which == 100){
+  	btn4.click();
+  }else if(e.which == 53 || e.which == 101){
+  	btn5.click();
+  }else if(e.which == 54 || e.which == 102){
+  	btn6.click();
+  }else if(e.which == 55 || e.which == 103){
+  	btn7.click();
+  }else if(e.which == 56 || e.which == 104){
+  	btn8.click();
+  }else if(e.which == 57 || e.which == 105){
+  	btn9.click();
+  }else if(e.which == 13 || e.which == 61){
+  	btnEqual.click();
+  }else if(e.which == 111 || e.which == 191){
+  	btnDivision.click();
+  }else if(e.which == 107 || e.which == 61){
+  	btnAddition.click();
+  }else if(e.which == 109 || e.which == 173 || e.which == 189){
+  	btnSubtraction.click();
+  }else if(e.which == 106){
+  	btnMultiplication.click();
+  }else if(e.which == 110 || e.which == 190){
+  	btnDecimal.click();
+  }else if(e.which == 8){
+  	btnBackspace.click();
+  }
+}
+</script>
